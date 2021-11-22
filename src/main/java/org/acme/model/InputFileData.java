@@ -1,8 +1,24 @@
 package org.acme.model;
 
+import java.util.ArrayList;
+
 public class InputFileData {
     private String xml;
     private String fileName;
+        private String appName;
+    public String getAppName() {
+            return appName;
+        }
+        public void setAppName(String appName) {
+            this.appName = appName;
+        }
+        public ArrayList<String> getForElements() {
+            return forElements;
+        }
+        public void setForElements(ArrayList<String> forElements) {
+            this.forElements = forElements;
+        }
+    private ArrayList<String> forElements;
     public String getXml() {
         return xml;
     }

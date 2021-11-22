@@ -1,0 +1,133 @@
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_028D5BAC-2A15-47D8-ADD0-361C4E113BDE" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_19B31063-84E4-4D4E-93CA-21FBC9416467" name="LeaveApp" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_028D5BAC-2A15-47D8-ADD0-361C4E113BDE">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_91B931EA-EF79-418C-98A2-C5996BE0D087" name="leavetype" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_9C3C63D9-8E50-4F65-AAC4-3197C83F6CE0">
+      <dmn:text>"leavetype", "noofdays"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_17698F32-FCC9-461C-A913-342E2E295A80" name="leavetype">
+    <dmn:extensionElements/>
+    <dmn:variable id="_B2809F92-366E-40E9-AA65-9A3EF10219A7" name="leavetype" typeRef="leavetype"/>
+  </dmn:inputData>
+  <dmn:inputData id="_9F57F48E-BB99-47EC-9862-BA726F1C10F6" name="noofdays">
+    <dmn:extensionElements/>
+    <dmn:variable id="_16F4CC34-CE4F-4588-BA86-138A5E981D43" name="noofdays" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:decision id="_6BE6AD72-A42A-472F-9305-A6047556651A" name="status">
+    <dmn:extensionElements/>
+    <dmn:variable id="_4C758381-444F-4A5D-8DE9-0F5AFB573D1E" name="status" typeRef="boolean"/>
+    <dmn:informationRequirement id="_B25A7DDB-15A8-4E9A-A685-00F88E93CCD9">
+      <dmn:requiredInput href="#_17698F32-FCC9-461C-A913-342E2E295A80"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_8F5D8344-1BB4-44C5-A3E1-4211ADCF97BE">
+      <dmn:requiredInput href="#_9F57F48E-BB99-47EC-9862-BA726F1C10F6"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_D336DF67-4DDF-4CB0-AE8F-4DDC8E33F836" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_81065B87-D95E-4742-8C83-F18DE5218E43">
+        <dmn:inputExpression id="_4F2AE482-9000-4476-9570-329846E3DFD7" typeRef="string">
+          <dmn:text>leavetype</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_251E74B4-E895-4E1F-B8F2-A7ED383C2E90">
+        <dmn:inputExpression id="_016D4458-61EB-4B14-A554-B28A26C67743" typeRef="number">
+          <dmn:text>noofdays</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_DDF7CF5F-2E82-4FC7-9102-2A7A5BD5B03C"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_4CE198C1-0957-4493-9013-89AC9E5BD7C4">
+        <dmn:inputEntry id="_60F3E69D-6D6A-4D95-8508-7ACEED873C11">
+          <dmn:text>"sick"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_3549D7BA-DF24-41E8-8149-3E7E17B8443E">
+          <dmn:text>&gt;=3</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_06D1B067-46A4-4C61-923D-688A88E3AA12">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_9AAB68B1-70C3-4B04-BEA1-885EC684F4C3">
+        <dmn:inputEntry id="_E29C3F59-FB90-4D78-A406-15DFFA5AD2B9">
+          <dmn:text>"sick"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_FDF056AD-A296-4DCF-8503-3C5A552D17CA">
+          <dmn:text>&lt;3</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_DBFB6C70-7DF0-4B85-B6DC-31695905B3CB">
+          <dmn:text>false</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_C4A95581-0515-4962-9646-9888C68EF656">
+        <dmn:inputEntry id="_71686AD1-7FDC-4B6C-8D3D-8E0B77E9E283">
+          <dmn:text>"earned"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_D3298E4A-87F4-4FE8-8BB7-AC75C8A4D198">
+          <dmn:text>&lt;0</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_69630CD3-7A94-43D1-AB67-42A09FCF0CCE">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_098EA710-2B88-4BA2-9F50-F0B25565FC04" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_D336DF67-4DDF-4CB0-AE8F-4DDC8E33F836">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_17698F32-FCC9-461C-A913-342E2E295A80" dmnElementRef="_17698F32-FCC9-461C-A913-342E2E295A80" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="138" y="180" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_9F57F48E-BB99-47EC-9862-BA726F1C10F6" dmnElementRef="_9F57F48E-BB99-47EC-9862-BA726F1C10F6" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="455" y="180" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_6BE6AD72-A42A-472F-9305-A6047556651A" dmnElementRef="_6BE6AD72-A42A-472F-9305-A6047556651A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="303" y="56" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_B25A7DDB-15A8-4E9A-A685-00F88E93CCD9-AUTO-TARGET" dmnElementRef="_B25A7DDB-15A8-4E9A-A685-00F88E93CCD9">
+        <di:waypoint x="188" y="205"/>
+        <di:waypoint x="353" y="106"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_8F5D8344-1BB4-44C5-A3E1-4211ADCF97BE" dmnElementRef="_8F5D8344-1BB4-44C5-A3E1-4211ADCF97BE">
+        <di:waypoint x="505" y="205"/>
+        <di:waypoint x="353" y="81"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
